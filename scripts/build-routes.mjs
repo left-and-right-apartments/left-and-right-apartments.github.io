@@ -33,8 +33,23 @@ async function route(mode, from, to) {
   }
 }
 
-const { home, places, arrivals } = JSON.parse(await readFile(root + 'data/places.json', 'utf8'));
-const out = { home, places: {}, arrivals: {} };
+const { home, places, arrivals, sport = [] } = JSON.parse(await readFile(root + 'data/places.json', 'utf8'));
+const out = { home, places: {}, arrivals: {}, sport: {} };
+
+/** Multi-stop route for running (foot) or cycling (bike) loops. */
+async function loop(mode, waypoints) {
+  const profile = mode === 'ride' ? 'routed-bike/route/v1/bike' : 'routed-foot/route/v1/foot';
+  const coords = waypoints.map(([lat, lng]) => `${lng},${lat}`).join(';');
+  const res = await fetch(`https://routing.openstreetmap.de/${profile}/${coords}?overview=full&geometries=polyline`, { headers: UA });
+  const r = (await res.json()).routes?.[0];
+  if (!r) throw new Error('no route');
+  return { mode, m: Math.round(r.distance), line: r.geometry };
+}
+for (const s of sport) {
+  console.log('sport', s.id);
+  try { out.sport[s.id] = await loop(s.mode, s.waypoints); } catch (e) { console.warn(`  ${s.id} failed: ${e.message}`); }
+  await sleep(700);
+}
 
 for (const a of arrivals) {
   console.log('arrival', a.id);

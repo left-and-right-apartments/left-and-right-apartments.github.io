@@ -635,3 +635,61 @@ body.no-scroll { overflow: hidden; }
 .chip-link svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 980px) { .know-grid, .tips { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .tip-card { grid-template-columns: 1fr; gap: 12px; } }
+
+/* ---------- Run & ride ---------- */
+.sport { padding: clamp(70px, 9vw, 120px) 0 clamp(30px, 4vw, 50px); }
+.sport-seg { margin-bottom: 18px; }
+.sport-grid { display: grid; grid-template-columns: minmax(300px, 1fr) 1.5fr; gap: 16px; }
+.sport-list { display: grid; gap: 10px; align-content: start; }
+.sport-card {
+  text-align: left; width: 100%; background: var(--paper); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 4px 14px; align-items: center; transition: border-color .3s, box-shadow .3s, transform .3s var(--ease);
+}
+.sport-card[data-mode="run"] { --accent: var(--cognac); }
+.sport-card[data-mode="ride"] { --accent: var(--sage); }
+.sport-card:hover { transform: translateX(3px); }
+.sport-card .ic { width: 44px; height: 44px; border-radius: 12px; background: var(--bg); display: grid; place-items: center; transition: background .3s; }
+.sport-card .ic svg { width: 22px; height: 22px; fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: stroke .3s; }
+.sc-main b { display: block; font: 600 1.02rem/1.25 var(--serif); }
+.sc-main small { color: var(--muted); font-size: .82rem; }
+.lvl { font-weight: 700; }
+.lvl-easy { color: var(--sage); } .lvl-medium { color: var(--cognac); }
+.sc-dist { font: 600 1.35rem/1 var(--serif); text-align: right; white-space: nowrap; }
+.sc-dist small { display: block; font: 500 .74rem/1.5 var(--sans); color: var(--muted); }
+.sc-more { grid-column: 1 / -1; display: grid; gap: 10px; color: var(--muted); font-size: .9rem; line-height: 1.55; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s, margin .4s; }
+.sc-more .link-arrow { color: var(--ink); justify-self: start; }
+.sport-card.is-on { border-color: var(--accent); box-shadow: 0 14px 34px rgba(28, 27, 25, .08); transform: none; }
+.sport-card.is-on .ic { background: var(--accent); }
+.sport-card.is-on .ic svg { stroke: #fff; }
+.sport-card.is-on .sc-more { max-height: 220px; opacity: 1; margin-top: 10px; }
+.sport-map-wrap { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); min-height: 520px; isolation: isolate; }
+#sportMap { position: absolute; inset: 0; background: #e6ebe8; }
+.sport-badge { position: absolute; left: 16px; top: 16px; z-index: 500; background: var(--ink); color: #fff; border-radius: 14px; padding: 12px 16px; font-size: .86rem; display: flex; gap: 14px; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); max-width: calc(100% - 32px); }
+.sport-badge:empty { display: none; }
+.sport-badge b { font: 600 1.5rem/1 var(--serif); white-space: nowrap; }
+.sport-badge span { opacity: .75; }
+.km-dot { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 2px solid var(--c); color: var(--ink); display: grid; place-items: center; font: 700 .72rem/1 var(--sans); box-shadow: 0 2px 6px rgba(0, 0, 0, .2); animation: pop .4s var(--ease) both; animation-delay: var(--d, 0s); }
+.mk-flag { width: 30px; height: 30px; border-radius: 50%; background: var(--c); display: grid; place-items: center; box-shadow: 0 3px 10px rgba(0, 0, 0, .3); border: 2px solid #fff; }
+.mk-flag svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sport-tips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+.sport-tips li { display: flex; gap: 12px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 16px; font-size: .88rem; color: var(--muted); line-height: 1.5; }
+.sport-tips b { color: var(--ink); }
+.sport-tips svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--sage); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 980px) {
+  .sport-grid { grid-template-columns: 1fr; }
+  .sport-map-wrap { min-height: 400px; order: -1; }
+  .sport-tips { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .sport-tips { grid-template-columns: 1fr; } }
+.sport-card[data-mode="gym"] { --accent: #1c1b19; }
+.sport-card[data-mode="yoga"] { --accent: #b8892f; }
+.sport-card[data-mode="wellness"] { --accent: #2f8f9d; }
+.sport-list { max-height: 560px; overflow-y: auto; padding: 2px 6px 2px 2px; scrollbar-width: thin; }
+.sport-seg { flex-wrap: wrap; border-radius: 22px; }
+.near-txt { font: 600 .9rem/1.2 var(--sans); color: var(--sage); white-space: normal; display: block; max-width: 9ch; text-align: right; }
+@media (max-width: 980px) { .sport-list { max-height: 460px; } }
+@media (max-width: 640px) {
+  .sport-seg { display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; border-radius: 999px; scrollbar-width: none; }
+  .sport-seg::-webkit-scrollbar { display: none; }
+  .sport-seg button { flex: none; }
+}

@@ -660,5 +660,354 @@
       "lat": 35.33916,
       "lng": 25.13321
     }
+  ],
+  "sport": [
+    {
+      "id": "koules",
+      "mode": "run",
+      "level": "easy",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.34457,
+          25.13693
+        ],
+        [
+          35.34666,
+          25.14057
+        ],
+        [
+          35.34457,
+          25.13693
+        ],
+        [
+          35.3383,
+          25.1459
+        ]
+      ]
+    },
+    {
+      "id": "lighthouse",
+      "mode": "run",
+      "level": "medium",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.34457,
+          25.13693
+        ],
+        [
+          35.35212,
+          25.15606
+        ],
+        [
+          35.34457,
+          25.13693
+        ],
+        [
+          35.3383,
+          25.1459
+        ]
+      ]
+    },
+    {
+      "id": "walls",
+      "mode": "run",
+      "level": "medium",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33268,
+          25.13076
+        ],
+        [
+          35.338,
+          25.1263
+        ],
+        [
+          35.3428,
+          25.1296
+        ],
+        [
+          35.34457,
+          25.13693
+        ],
+        [
+          35.3383,
+          25.1459
+        ]
+      ]
+    },
+    {
+      "id": "ammoudara",
+      "mode": "ride",
+      "level": "easy",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33746,
+          25.08933
+        ],
+        [
+          35.3383,
+          25.1459
+        ]
+      ]
+    },
+    {
+      "id": "karteros",
+      "mode": "ride",
+      "level": "medium",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33274,
+          25.20273
+        ],
+        [
+          35.3383,
+          25.1459
+        ]
+      ]
+    },
+    {
+      "id": "steelhouse",
+      "mode": "gym",
+      "name": "Steel House Gym",
+      "query": "Steel House Gym Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33823,
+          25.14598
+        ]
+      ]
+    },
+    {
+      "id": "getfit",
+      "mode": "gym",
+      "name": "GETFIT XXV Gym",
+      "query": "GETFIT XXV Gym Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33402,
+          25.14083
+        ]
+      ]
+    },
+    {
+      "id": "globalgym",
+      "mode": "gym",
+      "name": "Global Gym",
+      "query": "Global Gym Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.339,
+          25.14172
+        ]
+      ]
+    },
+    {
+      "id": "ignyte",
+      "mode": "gym",
+      "name": "Ignyte Fitness Hall",
+      "query": "Ignyte Fitness Hall Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33187,
+          25.13884
+        ]
+      ]
+    },
+    {
+      "id": "underground",
+      "mode": "gym",
+      "name": "Underground Gym Heraklion",
+      "query": "Underground Gym Heraklion Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.34313,
+          25.1578
+        ]
+      ]
+    },
+    {
+      "id": "fairyhouse",
+      "mode": "yoga",
+      "name": "Fairy House Yoga & Aerial Arts",
+      "query": "Fairy House Yoga & Aerial Arts Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33922,
+          25.15853
+        ]
+      ]
+    },
+    {
+      "id": "localshala",
+      "mode": "yoga",
+      "name": "Local Shala",
+      "query": "Local Shala Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33186,
+          25.13948
+        ]
+      ]
+    },
+    {
+      "id": "irene",
+      "mode": "yoga",
+      "name": "Irène Studio Pilates",
+      "query": "Irène Studio Pilates Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.32993,
+          25.14339
+        ]
+      ]
+    },
+    {
+      "id": "circle",
+      "mode": "yoga",
+      "name": "The CIRCLE Pilates & Fitness",
+      "query": "The CIRCLE Pilates & Fitness Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33602,
+          25.13445
+        ]
+      ]
+    },
+    {
+      "id": "dharma",
+      "mode": "yoga",
+      "name": "Dharma Yoga Heraklion",
+      "query": "Dharma Yoga Heraklion Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.34116,
+          25.1343
+        ]
+      ]
+    },
+    {
+      "id": "wellnesshall",
+      "mode": "wellness",
+      "name": "Wellness Hall",
+      "query": "Wellness Hall Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33631,
+          25.15772
+        ]
+      ]
+    },
+    {
+      "id": "kame",
+      "mode": "wellness",
+      "name": "Kame Massage",
+      "query": "Kame Massage Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33263,
+          25.13896
+        ]
+      ]
+    },
+    {
+      "id": "mymassage",
+      "mode": "wellness",
+      "name": "My Massage",
+      "query": "My Massage Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33947,
+          25.1328
+        ]
+      ]
+    },
+    {
+      "id": "arogya",
+      "mode": "wellness",
+      "name": "Arogya Spa",
+      "query": "Arogya Spa Heraklion",
+      "waypoints": [
+        [
+          35.3383,
+          25.1459
+        ],
+        [
+          35.33945,
+          25.12838
+        ]
+      ]
+    }
   ]
 }

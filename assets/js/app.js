@@ -363,7 +363,9 @@
     const pts = decodePolyline(r.line);
     arriveLayer = L.layerGroup().addTo(arriveMap);
     const a = ARRIVALS.find((x) => x.id === arriveSel), p = arrivalPoint(arriveSel) || { lat: pts[0][0], lng: pts[0][1] };
+    const layer = arriveLayer;
     const go = () => {
+      if (layer !== arriveLayer) return; // another arrival was picked while the map was moving
       drawRoute(arriveLayer, pts, r.mode === 'car' ? '#1c1b19' : '#b5562b');
       L.marker([p.lat, p.lng], { icon: L.divIcon({ className: '', iconSize: [34, 34], iconAnchor: [17, 17], html: `<div class="mk-pt">${svg(ICONS[a.icon])}</div>` }) }).addTo(arriveLayer);
     };
@@ -752,6 +754,108 @@
     });
   }
 
+  /* ---------- run & ride ---------- */
+  const SPORT_ICONS = {
+    run: 'M13 4a1.5 1.5 0 1 0 0-.01M7 21l3-6 3 2v4M6 12l3-4h4l2 3 3 1M10 8l-1.5 5',
+    ride: 'M6 17m-3.5 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0M18 17m-3.5 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0M6 17l4-8h5l3 8M10 9 8 5H5M14 9l1-3h3',
+    gym: 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11',
+    yoga: 'M12 5.5a1.5 1.5 0 1 0 0-.01M12 8v5M6 10l6 3 6-3M8 20l4-7 4 7M5 20h14',
+    wellness: 'M12 21c-4-2-7-5.5-7-10 3 0 5.5 1.5 7 4 1.5-2.5 4-4 7-4 0 4.5-3 8-7 10zM12 15V9M9.5 6.5C10 5 11 4 12 3c1 1 2 2 2.5 3.5',
+  };
+  const SPORT_COLORS = { run: '#b5562b', ride: '#4f7259', gym: '#1c1b19', yoga: '#b8892f', wellness: '#2f8f9d' };
+  const isSpot = (s) => !['run', 'ride'].includes(s.mode);
+  let sportMap = null, sportSel = 'koules', sportMode = 'all', sportLayer = null;
+  const sportDef = (id) => (guide && guide.sport || []).find((s) => s.id === id);
+  const sportMins = (r) => Math.round(r.mode === 'ride' ? (r.m / 1000) / 16 * 60 : (r.m / 1000) * 6); // ~16 km/h, ~6 min/km
+  function sportDirUrl(s) {
+    if (isSpot(s)) return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.query || s.name)}`;
+    const w = s.waypoints, f = ([a, b]) => `${a},${b}`;
+    const mid = w.slice(1, -1).map(f).join('|');
+    return `https://www.google.com/maps/dir/?api=1&origin=${f(w[0])}&destination=${f(w[w.length - 1])}&waypoints=${encodeURIComponent(mid)}&travelmode=${s.mode === 'ride' ? 'bicycling' : 'walking'}`;
+  }
+  function renderSport() {
+    if (!guide || !guide.sport) return;
+    const list = guide.sport.filter((s) => sportMode === 'all' || s.mode === sportMode);
+    if (!list.some((s) => s.id === sportSel) && list[0]) sportSel = list[0].id;
+    $('#sportList').innerHTML = list.map((s) => {
+      const r = routes && routes.sport && routes.sport[s.id], spot = isSpot(s);
+      const title = spot ? s.name : t(`sport.${s.id}`);
+      const sub = spot ? esc(t(`sport.kind.${s.mode}`)) : `${esc(t(s.mode === 'ride' ? 'sport.ride' : 'sport.run'))} · <span class="lvl lvl-${s.level}">${esc(t('sport.' + s.level))}</span>`;
+      // the apartment pin is approximate, so very short walks just say "around the corner"
+      const dist = !r ? '' : spot ? (r.m < 300 ? `<span class="near-txt">${esc(t('sport.corner'))}</span>` : `${mins(r.m / 1000 * 12 * 60)}′<small>${esc(t('sport.onFoot'))}</small>`) : `${fmtKm(r.m)}<small>≈ ${sportMins(r)}′</small>`;
+      const desc = spot ? t('sport.spotDesc', { d: r ? fmtKm(r.m) : '' }) : t(`sport.${s.id}.desc`);
+      return `<button class="sport-card${s.id === sportSel ? ' is-on' : ''}" role="tab" aria-selected="${s.id === sportSel}" data-id="${s.id}" data-mode="${s.mode}">
+        <span class="ic">${svg(SPORT_ICONS[s.mode])}</span>
+        <span class="sc-main"><b>${esc(title)}</b><small>${sub}</small></span>
+        <span class="sc-dist">${dist}</span>
+        <span class="sc-more"><span>${esc(desc)}</span><a class="link-arrow" target="_blank" rel="noopener" href="${sportDirUrl(s)}">${esc(t('guide.open'))}</a></span>
+      </button>`;
+    }).join('');
+    showSport(false);
+  }
+  function kmMarkers(pts, step) {
+    const out = []; let acc = 0, next = step;
+    for (let i = 1; i < pts.length; i++) {
+      const a = { lat: pts[i - 1][0], lng: pts[i - 1][1] }, b = { lat: pts[i][0], lng: pts[i][1] };
+      const d = km(a, b); if (!d) continue;
+      while (acc + d >= next) {
+        const f = (next - acc) / d;
+        out.push({ at: next, ll: [a.lat + (b.lat - a.lat) * f, a.lng + (b.lng - a.lng) * f] });
+        next += step;
+      }
+      acc += d;
+    }
+    return out;
+  }
+  function showSport(animate = true) {
+    const s = sportDef(sportSel), r = s && routes && routes.sport && routes.sport[s.id];
+    const spot = s && isSpot(s);
+    $('#sportBadge').innerHTML = !r ? '' : spot
+      ? `<b>${r.m < 300 ? esc(t('sport.corner')) : fmtKm(r.m)}</b><span>${esc(s.name)} · ${esc(t('guide.from'))}</span>`
+      : `<b>${fmtKm(r.m)}</b><span>${esc(t(`sport.${s.id}`))} · ${esc(t('sport.loop'))}</span>`;
+    if (!sportMap || !r) return;
+    const L = window.L, pts = decodePolyline(r.line);
+    if (sportLayer) sportMap.removeLayer(sportLayer);
+    const layer = sportLayer = L.layerGroup().addTo(sportMap);
+    const color = SPORT_COLORS[s.mode];
+    const go = () => {
+      if (layer !== sportLayer) return; // another route was picked while the map was moving
+      if (pts.length > 1) drawRoute(layer, pts, color);
+      const turn = spot ? s.waypoints[s.waypoints.length - 1] : s.waypoints[Math.floor(s.waypoints.length / 2)];
+      L.marker(turn, { zIndexOffset: 1100, icon: L.divIcon({ className: '', iconSize: [30, 30], iconAnchor: [15, 15], html: `<div class="mk-flag" style="--c:${color}">${svg(spot ? SPORT_ICONS[s.mode] : 'M6 21V4M6 4h11l-2 4 2 4H6')}</div>` }) }).addTo(sportLayer);
+      if (spot) return;
+      // km markers, but only along the way out so they don't overlap on out-and-back routes
+      const half = r.m / 1000 / 2, step = s.mode === 'ride' ? 2 : 1;
+      kmMarkers(pts, step).filter((k) => k.at < half + 0.01 || s.id === 'walls').forEach((k, i) => {
+        L.marker(k.ll, { interactive: false, icon: L.divIcon({ className: '', iconSize: [26, 26], iconAnchor: [13, 13], html: `<span class="km-dot" style="--c:${color};--d:${(0.9 + i * 0.08).toFixed(2)}s">${k.at}</span>` }) }).addTo(sportLayer);
+      });
+    };
+    const bounds = L.latLngBounds(pts).pad(0.12), fit = { maxZoom: 16 };
+    if (animate) { sportMap.flyToBounds(bounds, { ...fit, duration: 0.8 }); sportMap.once('moveend', go); } else { sportMap.fitBounds(bounds, fit); go(); }
+  }
+  function initSport() {
+    $('#sportList').addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      const b = e.target.closest('.sport-card'); if (!b || b.dataset.id === sportSel) return;
+      sportSel = b.dataset.id;
+      $$('.sport-card').forEach((x) => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b); });
+      showSport(true);
+    });
+    $('#sportSeg').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      sportMode = b.dataset.mode;
+      $$('#sportSeg button').forEach((x) => x.classList.toggle('is-on', x === b));
+      const prev = sportSel; renderSport(); if (prev !== sportSel) showSport(true);
+    });
+    const init = () => {
+      if (sportMap || !window.L || !guide || !routes) return;
+      sportMap = baseMap('sportMap');
+      window.L.marker([guide.home.lat, guide.home.lng], { icon: homeIcon(), zIndexOffset: 1000 }).addTo(sportMap);
+      showSport(false);
+    };
+    return lazyMap($('#sportMap'), init);
+  }
+
   /* ---------- small facts ---------- */
   function renderFacts() {
     const r = routes && routes.arrivals.centre;
@@ -769,14 +873,14 @@
   /* ---------- boot ---------- */
   async function boot() {
     initHeader(); initGalleries(); initStats(); initVoices(); initCalendar(); initBooking(); initReveal();
-    const retryArrive = initArrivals(), retryGuide = initGuide();
-    rerender.push(renderAmenities, renderStats, renderVoices, renderCalendar, renderArrivals, renderGuide, renderFacts, bookingCheck);
+    const retryArrive = initArrivals(), retryGuide = initGuide(), retrySport = initSport();
+    rerender.push(renderAmenities, renderStats, renderVoices, renderCalendar, renderArrivals, renderGuide, renderFacts, bookingCheck, renderSport);
     setLang(pickLang(), false);
     let rev;
     [stats, avail, guide, routes, rev] = await Promise.all(['stats', 'availability', 'places', 'routes', 'reviews'].map((f) => getJSON(`data/${f}.json`)));
     reviews = (rev && rev.reviews) || [];
-    renderStats(); renderVoices(); renderCalendar(); renderArrivals(); renderGuide(); renderFacts(); bookingCheck();
-    retryArrive(); retryGuide(); // maps that scrolled into view before their data arrived
+    renderStats(); renderVoices(); renderCalendar(); renderArrivals(); renderGuide(); renderFacts(); bookingCheck(); renderSport();
+    retryArrive(); retryGuide(); retrySport(); // maps that scrolled into view before their data arrived
   }
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', boot) : boot();
 })();

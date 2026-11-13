@@ -533,3 +533,100 @@ window.I18N = {
   };
   for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
 })();
+
+/* Active & wellbeing: run, ride, gyms, yoga, wellbeing */
+(() => {
+  const more = {
+    en: {
+      "sport.kicker": "Active & wellbeing", "sport.title": "Run, ride, stretch, unwind.",
+      "sport.sub": "Running and cycling routes from your door, plus nearby gyms, yoga studios and places to relax. Pick one to see it on the map.",
+      "sport.run": "Running", "sport.ride": "Cycling", "sport.gym": "Gyms", "sport.yoga": "Yoga & Pilates", "sport.wellness": "Wellbeing",
+      "sport.easy": "easy", "sport.medium": "moderate", "sport.loop": "round trip from the apartments",
+      "sport.corner": "around the corner", "sport.onFoot": "on foot",
+      "sport.kind.gym": "Gym", "sport.kind.yoga": "Yoga & Pilates studio", "sport.kind.wellness": "Massage & spa",
+      "sport.spotDesc": "{d} on foot from the apartments. Check opening hours and drop-in options on their page.",
+      "sport.koules": "Koules & the harbour", "sport.koules.desc": "Flat and easy: down to the Venetian harbour and Koules fortress, then out along the breakwater with the sea on both sides. Lovely at sunrise.",
+      "sport.lighthouse": "To the lighthouse", "sport.lighthouse.desc": "The classic Heraklion run: past Koules and all the way along the breakwater to the lighthouse and back. Flat, but open to the wind.",
+      "sport.walls": "Old town & Venetian walls", "sport.walls.desc": "A loop around the old town: up to Kazantzakis' tomb on the walls, west to the Chania Gate, down to the sea and back along the harbour. A few gentle climbs.",
+      "sport.ammoudara": "West to Ammoudara beach", "sport.ammoudara.desc": "Ride west along the coast to the long sandy beach of Ammoudara. Perfect for a swim before riding back.",
+      "sport.karteros": "East to Karteros beach", "sport.karteros.desc": "Ride east past the airport to Karteros, a long beach loved by locals. Roads near the airport get busy, so go early.",
+      "sport.tip1": "<b>Beat the heat.</b> From June to September, go before 9:00 or after 19:00.",
+      "sport.tip2": "<b>Mind the wind.</b> The breakwater is exposed — on windy summer days, the walls loop is more sheltered.",
+      "sport.tip3": "<b>Bring water.</b> Take a bottle with you, especially on the longer routes.",
+      "sport.tip4": "<b>Cycling in town.</b> Traffic can be busy, so early mornings are best. Ask us about bike rental."
+    },
+    el: {
+      "sport.kicker": "Άθληση & ευεξία", "sport.title": "Τρέξτε, κάντε ποδήλατο, χαλαρώστε.",
+      "sport.sub": "Διαδρομές για τρέξιμο και ποδήλατο από την πόρτα σας, μαζί με κοντινά γυμναστήρια, στούντιο yoga και χώρους χαλάρωσης. Διαλέξτε ένα για να το δείτε στον χάρτη.",
+      "sport.run": "Τρέξιμο", "sport.ride": "Ποδήλατο", "sport.gym": "Γυμναστήρια", "sport.yoga": "Yoga & Pilates", "sport.wellness": "Ευεξία",
+      "sport.easy": "εύκολη", "sport.medium": "μέτρια", "sport.loop": "πήγαινε-έλα από τα διαμερίσματα",
+      "sport.corner": "στη γωνία", "sport.onFoot": "με τα πόδια",
+      "sport.kind.gym": "Γυμναστήριο", "sport.kind.yoga": "Στούντιο yoga & pilates", "sport.kind.wellness": "Μασάζ & spa",
+      "sport.spotDesc": "{d} με τα πόδια από τα διαμερίσματα. Δείτε ωράριο και επιλογές για μεμονωμένη επίσκεψη στη σελίδα τους.",
+      "sport.koules": "Κούλες & λιμάνι", "sport.koules.desc": "Επίπεδη και εύκολη: κάτω στο ενετικό λιμάνι και στον Κούλε, και μετά πάνω στον μώλο με θάλασσα και από τις δύο πλευρές. Υπέροχη την ανατολή.",
+      "sport.lighthouse": "Ως τον φάρο", "sport.lighthouse.desc": "Η κλασική διαδρομή του Ηρακλείου: περνάτε τον Κούλε και συνεχίζετε όλο τον μώλο ως τον φάρο και πίσω. Επίπεδη, αλλά εκτεθειμένη στον αέρα.",
+      "sport.walls": "Παλιά πόλη & ενετικά τείχη", "sport.walls.desc": "Κύκλος γύρω από την παλιά πόλη: πάνω στα τείχη ως τον τάφο του Καζαντζάκη, δυτικά ως την Πύλη των Χανίων, κάτω στη θάλασσα και πίσω από το λιμάνι. Λίγες ήπιες ανηφόρες.",
+      "sport.ammoudara": "Δυτικά ως την Αμμουδάρα", "sport.ammoudara.desc": "Ποδήλατο δυτικά στην παραλιακή ως τη μεγάλη αμμουδιά της Αμμουδάρας. Ιδανικό για μια βουτιά πριν την επιστροφή.",
+      "sport.karteros": "Ανατολικά ως τον Καρτερό", "sport.karteros.desc": "Ποδήλατο ανατολικά, δίπλα από το αεροδρόμιο, ως την παραλία του Καρτερού, αγαπημένη των ντόπιων. Κοντά στο αεροδρόμιο έχει κίνηση, οπότε ξεκινήστε νωρίς.",
+      "sport.tip1": "<b>Αποφύγετε τη ζέστη.</b> Από Ιούνιο ως Σεπτέμβριο, βγείτε πριν τις 9:00 ή μετά τις 19:00.",
+      "sport.tip2": "<b>Προσοχή στον αέρα.</b> Ο μώλος είναι εκτεθειμένος — τις μέρες με μελτέμι, ο κύκλος των τειχών είναι πιο προστατευμένος.",
+      "sport.tip3": "<b>Πάρτε νερό.</b> Έχετε μαζί σας ένα μπουκάλι, ειδικά στις μεγάλες διαδρομές.",
+      "sport.tip4": "<b>Ποδήλατο στην πόλη.</b> Η κίνηση μπορεί να είναι έντονη, οπότε προτιμήστε τα πρωινά. Ρωτήστε μας για ενοικίαση ποδηλάτου."
+    },
+    de: {
+      "sport.kicker": "Aktiv & Wohlbefinden", "sport.title": "Laufen, radeln, dehnen, entspannen.",
+      "sport.sub": "Lauf- und Radrouten direkt ab Ihrer Tür, dazu Fitnessstudios, Yogastudios und Orte zum Entspannen in der Nähe. Wählen Sie eine, um sie auf der Karte zu sehen.",
+      "sport.run": "Laufen", "sport.ride": "Radfahren", "sport.gym": "Fitnessstudios", "sport.yoga": "Yoga & Pilates", "sport.wellness": "Wohlbefinden",
+      "sport.easy": "leicht", "sport.medium": "mittel", "sport.loop": "hin und zurück ab den Apartments",
+      "sport.corner": "gleich um die Ecke", "sport.onFoot": "zu Fuß",
+      "sport.kind.gym": "Fitnessstudio", "sport.kind.yoga": "Yoga- & Pilates-Studio", "sport.kind.wellness": "Massage & Spa",
+      "sport.spotDesc": "{d} zu Fuß von den Apartments. Öffnungszeiten und Einzelstunden finden Sie auf deren Seite.",
+      "sport.koules": "Koules & Hafen", "sport.koules.desc": "Flach und leicht: hinunter zum venezianischen Hafen und zur Festung Koules, dann auf die Mole mit Meer zu beiden Seiten. Herrlich bei Sonnenaufgang.",
+      "sport.lighthouse": "Zum Leuchtturm", "sport.lighthouse.desc": "Die klassische Laufstrecke Heraklions: vorbei an Koules und die ganze Mole entlang bis zum Leuchtturm und zurück. Flach, aber windig.",
+      "sport.walls": "Altstadt & venezianische Mauern", "sport.walls.desc": "Eine Runde um die Altstadt: hinauf zum Grab von Kazantzakis auf der Mauer, westwärts zum Chania-Tor, hinunter ans Meer und am Hafen zurück. Ein paar sanfte Anstiege.",
+      "sport.ammoudara": "Westwärts nach Ammoudara", "sport.ammoudara.desc": "Mit dem Rad westwärts an der Küste entlang zum langen Sandstrand von Ammoudara. Ideal für ein Bad vor der Rückfahrt.",
+      "sport.karteros": "Ostwärts nach Karteros", "sport.karteros.desc": "Mit dem Rad ostwärts am Flughafen vorbei zum Strand von Karteros, beliebt bei Einheimischen. In Flughafennähe viel Verkehr — früh starten.",
+      "sport.tip1": "<b>Der Hitze ausweichen.</b> Von Juni bis September vor 9:00 oder nach 19:00 Uhr starten.",
+      "sport.tip2": "<b>Auf den Wind achten.</b> Die Mole ist ungeschützt — an windigen Sommertagen ist die Mauerrunde geschützter.",
+      "sport.tip3": "<b>Wasser mitnehmen.</b> Besonders auf den längeren Strecken eine Flasche dabeihaben.",
+      "sport.tip4": "<b>Radfahren in der Stadt.</b> Der Verkehr kann dicht sein, am besten früh morgens. Fragen Sie uns nach einem Fahrradverleih."
+    },
+    fr: {
+      "sport.kicker": "Sport & bien-être", "sport.title": "Courir, pédaler, s'étirer, se détendre.",
+      "sport.sub": "Des parcours de course et de vélo au départ de votre porte, plus les salles de sport, studios de yoga et lieux de détente à proximité. Choisissez-en un pour le voir sur la carte.",
+      "sport.run": "Course", "sport.ride": "Vélo", "sport.gym": "Salles de sport", "sport.yoga": "Yoga & Pilates", "sport.wellness": "Bien-être",
+      "sport.easy": "facile", "sport.medium": "modéré", "sport.loop": "aller-retour depuis les appartements",
+      "sport.corner": "juste à côté", "sport.onFoot": "à pied",
+      "sport.kind.gym": "Salle de sport", "sport.kind.yoga": "Studio de yoga & pilates", "sport.kind.wellness": "Massage & spa",
+      "sport.spotDesc": "À {d} à pied des appartements. Horaires et séances à l'unité sur leur page.",
+      "sport.koules": "Koules & le port", "sport.koules.desc": "Plat et facile : jusqu'au port vénitien et à la forteresse de Koules, puis le long de la digue avec la mer des deux côtés. Superbe au lever du soleil.",
+      "sport.lighthouse": "Jusqu'au phare", "sport.lighthouse.desc": "Le grand classique d'Héraklion : passer Koules et longer toute la digue jusqu'au phare, aller-retour. Plat, mais exposé au vent.",
+      "sport.walls": "Vieille ville & remparts vénitiens", "sport.walls.desc": "Une boucle autour de la vieille ville : sur les remparts jusqu'à la tombe de Kazantzákis, vers l'ouest jusqu'à la porte de La Canée, puis la mer et retour par le port. Quelques montées douces.",
+      "sport.ammoudara": "Vers l'ouest : plage d'Ammoudara", "sport.ammoudara.desc": "À vélo vers l'ouest le long de la côte jusqu'à la longue plage de sable d'Ammoudara. Parfait pour une baignade avant le retour.",
+      "sport.karteros": "Vers l'est : plage de Karteros", "sport.karteros.desc": "À vélo vers l'est, après l'aéroport, jusqu'à la plage de Karteros, très appréciée des habitants. Circulation dense près de l'aéroport : partez tôt.",
+      "sport.tip1": "<b>Fuyez la chaleur.</b> De juin à septembre, sortez avant 9h00 ou après 19h00.",
+      "sport.tip2": "<b>Attention au vent.</b> La digue est exposée — les jours de vent, la boucle des remparts est plus abritée.",
+      "sport.tip3": "<b>Emportez de l'eau.</b> Prenez une bouteille, surtout sur les longs parcours.",
+      "sport.tip4": "<b>Vélo en ville.</b> La circulation peut être dense, le matin tôt est idéal. Demandez-nous pour la location de vélos."
+    },
+    it: {
+      "sport.kicker": "Sport & benessere", "sport.title": "Correre, pedalare, allungarsi, rilassarsi.",
+      "sport.sub": "Percorsi di corsa e bici dalla porta di casa, più palestre, studi di yoga e luoghi per rilassarsi nelle vicinanze. Sceglietene uno per vederlo sulla mappa.",
+      "sport.run": "Corsa", "sport.ride": "Bici", "sport.gym": "Palestre", "sport.yoga": "Yoga & Pilates", "sport.wellness": "Benessere",
+      "sport.easy": "facile", "sport.medium": "medio", "sport.loop": "andata e ritorno dagli appartamenti",
+      "sport.corner": "dietro l'angolo", "sport.onFoot": "a piedi",
+      "sport.kind.gym": "Palestra", "sport.kind.yoga": "Studio di yoga & pilates", "sport.kind.wellness": "Massaggi & spa",
+      "sport.spotDesc": "A {d} a piedi dagli appartamenti. Orari e lezioni singole sulla loro pagina.",
+      "sport.koules": "Koules & il porto", "sport.koules.desc": "Piatto e facile: giù al porto veneziano e alla fortezza di Koules, poi lungo il molo con il mare da entrambi i lati. Bellissimo all'alba.",
+      "sport.lighthouse": "Fino al faro", "sport.lighthouse.desc": "Il classico di Heraklion: oltre Koules e lungo tutto il molo fino al faro, andata e ritorno. Piatto, ma esposto al vento.",
+      "sport.walls": "Centro storico & mura veneziane", "sport.walls.desc": "Un giro intorno al centro storico: sulle mura fino alla tomba di Kazantzakis, a ovest fino alla Porta di Chania, giù al mare e ritorno lungo il porto. Qualche salita leggera.",
+      "sport.ammoudara": "A ovest fino ad Ammoudara", "sport.ammoudara.desc": "In bici verso ovest lungo la costa fino alla lunga spiaggia sabbiosa di Ammoudara. Perfetto per un bagno prima del ritorno.",
+      "sport.karteros": "A est fino a Karteros", "sport.karteros.desc": "In bici verso est, oltre l'aeroporto, fino alla spiaggia di Karteros, amata dalla gente del posto. Vicino all'aeroporto c'è traffico: partite presto.",
+      "sport.tip1": "<b>Evitate il caldo.</b> Da giugno a settembre uscite prima delle 9:00 o dopo le 19:00.",
+      "sport.tip2": "<b>Attenzione al vento.</b> Il molo è esposto — nei giorni ventosi il giro delle mura è più riparato.",
+      "sport.tip3": "<b>Portate acqua.</b> Tenete una bottiglia con voi, soprattutto sui percorsi lunghi.",
+      "sport.tip4": "<b>Bici in città.</b> Il traffico può essere intenso, meglio la mattina presto. Chiedeteci per il noleggio bici."
+    }
+  };
+  for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
+})();
