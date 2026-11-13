@@ -1,0 +1,664 @@
+{
+  "home": {
+    "lat": 35.3383,
+    "lng": 25.1459,
+    "approximate": true
+  },
+  "places": [
+    {
+      "name": "Peskesi",
+      "cat": "eat",
+      "lat": 35.34016,
+      "lng": 25.1325,
+      "tags": [
+        "cretan",
+        "farm"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Parasties",
+      "cat": "eat",
+      "lat": 35.34134,
+      "lng": 25.1301,
+      "tags": [
+        "cretan",
+        "grill"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Merastri",
+      "cat": "eat",
+      "lat": 35.33278,
+      "lng": 25.13616,
+      "tags": [
+        "cretan",
+        "traditional"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Μεζεδοπωλείο Η Αυλή",
+      "cat": "eat",
+      "lat": 35.33682,
+      "lng": 25.13499,
+      "tags": [
+        "meze",
+        "traditional"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Sir Papafigos",
+      "cat": "eat",
+      "lat": 35.34268,
+      "lng": 25.13429,
+      "tags": [
+        "greek"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Erganos",
+      "cat": "eat",
+      "lat": 35.33237,
+      "lng": 25.1337,
+      "tags": [
+        "cretan",
+        "tavern"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Vourvouladiko",
+      "cat": "eat",
+      "lat": 35.33523,
+      "lng": 25.12982,
+      "tags": [
+        "cretan",
+        "tavern"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Athali Cretan Cuisine",
+      "cat": "eat",
+      "lat": 35.33694,
+      "lng": 25.13294,
+      "tags": [
+        "cretan",
+        "homestyle"
+      ],
+      "fav": true
+    },
+    {
+      "name": "Chalali",
+      "cat": "eat",
+      "lat": 35.33686,
+      "lng": 25.1304,
+      "tags": [
+        "greek",
+        "mediterranean"
+      ]
+    },
+    {
+      "name": "Paradosiakon",
+      "cat": "eat",
+      "lat": 35.33922,
+      "lng": 25.13194,
+      "tags": [
+        "greek",
+        "traditional"
+      ]
+    },
+    {
+      "name": "Apiri Greek Eatery",
+      "cat": "eat",
+      "lat": 35.33842,
+      "lng": 25.1311,
+      "tags": [
+        "greek",
+        "mediterranean"
+      ]
+    },
+    {
+      "name": "Arismari & Varsamo",
+      "cat": "eat",
+      "lat": 35.34173,
+      "lng": 25.1314,
+      "tags": [
+        "greek",
+        "casual"
+      ]
+    },
+    {
+      "name": "Kouzeineri",
+      "cat": "eat",
+      "lat": 35.3404,
+      "lng": 25.13545,
+      "tags": [
+        "greek",
+        "grill"
+      ]
+    },
+    {
+      "name": "44 Kouzina",
+      "cat": "eat",
+      "lat": 35.32898,
+      "lng": 25.12691,
+      "tags": [
+        "seafood"
+      ]
+    },
+    {
+      "name": "Kanatelias Lunch",
+      "cat": "eat",
+      "lat": 35.33732,
+      "lng": 25.13384,
+      "tags": [
+        "lunch",
+        "homestyle"
+      ]
+    },
+    {
+      "name": "Almi",
+      "cat": "eat",
+      "lat": 35.33952,
+      "lng": 25.1347,
+      "tags": [
+        "seafood",
+        "family"
+      ]
+    },
+    {
+      "name": "The Walls exclusive cuisine",
+      "cat": "eat",
+      "lat": 35.34232,
+      "lng": 25.13397,
+      "tags": [
+        "modern",
+        "mediterranean"
+      ]
+    },
+    {
+      "name": "Il Pazzo",
+      "cat": "eat",
+      "lat": 35.3409,
+      "lng": 25.13287,
+      "tags": [
+        "italian"
+      ]
+    },
+    {
+      "name": "Smasheri Burgers",
+      "cat": "eat",
+      "lat": 35.33983,
+      "lng": 25.13516,
+      "tags": [
+        "burgers"
+      ]
+    },
+    {
+      "name": "Kirkór",
+      "cat": "eat",
+      "lat": 35.33901,
+      "lng": 25.13301,
+      "tags": [
+        "bougatsa"
+      ]
+    },
+    {
+      "name": "Phyllo Sophies",
+      "cat": "eat",
+      "lat": 35.33896,
+      "lng": 25.13308,
+      "tags": [
+        "bougatsa",
+        "brunch"
+      ]
+    },
+    {
+      "name": "Steam Single Origin Coffees",
+      "cat": "coffee",
+      "lat": 35.33871,
+      "lng": 25.14507,
+      "tags": [
+        "specialty"
+      ],
+      "near": true
+    },
+    {
+      "name": "Frankly Cafe",
+      "cat": "coffee",
+      "lat": 35.33789,
+      "lng": 25.13123,
+      "tags": [
+        "espresso"
+      ]
+    },
+    {
+      "name": "Hacienda",
+      "cat": "coffee",
+      "lat": 35.33796,
+      "lng": 25.13047,
+      "tags": [
+        "roastery",
+        "specialty"
+      ]
+    },
+    {
+      "name": "Koul Microbakery",
+      "cat": "coffee",
+      "lat": 35.3372,
+      "lng": 25.13032,
+      "tags": [
+        "bakery",
+        "specialty"
+      ]
+    },
+    {
+      "name": "Think Tank",
+      "cat": "coffee",
+      "lat": 35.33946,
+      "lng": 25.13521,
+      "tags": [
+        "specialty",
+        "wine"
+      ]
+    },
+    {
+      "name": "Speira",
+      "cat": "coffee",
+      "lat": 35.33828,
+      "lng": 25.1307,
+      "tags": [
+        "specialty"
+      ]
+    },
+    {
+      "name": "Tiny Rebels",
+      "cat": "coffee",
+      "lat": 35.33986,
+      "lng": 25.13172,
+      "tags": [
+        "specialty"
+      ]
+    },
+    {
+      "name": "The Batch Spot",
+      "cat": "coffee",
+      "lat": 35.34112,
+      "lng": 25.12997,
+      "tags": [
+        "specialty",
+        "brunch"
+      ]
+    },
+    {
+      "name": "Swing Thing",
+      "cat": "drinks",
+      "lat": 35.33995,
+      "lng": 25.13377,
+      "tags": [
+        "cocktails"
+      ]
+    },
+    {
+      "name": "The Bitters Bar",
+      "cat": "drinks",
+      "lat": 35.33903,
+      "lng": 25.13282,
+      "tags": [
+        "cocktails"
+      ]
+    },
+    {
+      "name": "Stone Project",
+      "cat": "drinks",
+      "lat": 35.33892,
+      "lng": 25.13533,
+      "tags": [
+        "bar"
+      ]
+    },
+    {
+      "name": "Toucan Skybar",
+      "cat": "drinks",
+      "lat": 35.33763,
+      "lng": 25.13554,
+      "tags": [
+        "rooftop",
+        "cocktails"
+      ]
+    },
+    {
+      "name": "La Brasserie",
+      "cat": "drinks",
+      "lat": 35.33867,
+      "lng": 25.13563,
+      "tags": [
+        "bar",
+        "allday"
+      ]
+    },
+    {
+      "name": "Take Five",
+      "cat": "drinks",
+      "lat": 35.33859,
+      "lng": 25.13563,
+      "tags": [
+        "bar",
+        "allday"
+      ]
+    },
+    {
+      "name": "Hūmāna Spritzeria",
+      "cat": "drinks",
+      "lat": 35.33717,
+      "lng": 25.13036,
+      "tags": [
+        "spritz",
+        "pizza"
+      ]
+    },
+    {
+      "name": "Jailhouse Rock Bar",
+      "cat": "drinks",
+      "lat": 35.33992,
+      "lng": 25.13132,
+      "tags": [
+        "rock",
+        "music"
+      ]
+    },
+    {
+      "name": "Route 66 Rock Bar",
+      "cat": "drinks",
+      "lat": 35.3401,
+      "lng": 25.13147,
+      "tags": [
+        "rock"
+      ]
+    },
+    {
+      "name": "Guernica",
+      "cat": "drinks",
+      "lat": 35.33973,
+      "lng": 25.13081,
+      "tags": [
+        "cocktails",
+        "music"
+      ]
+    },
+    {
+      "name": "Polytechneio Cafe",
+      "cat": "drinks",
+      "lat": 35.33922,
+      "lng": 25.13165,
+      "tags": [
+        "bar",
+        "allday"
+      ]
+    },
+    {
+      "name": {
+        "en": "Museum of Visual Arts",
+        "el": "Μουσείο Εικαστικών Τεχνών",
+        "de": "Museum für Bildende Künste",
+        "fr": "Musée des Arts visuels",
+        "it": "Museo delle Arti Visive"
+      },
+      "query": "Museum of Visual Arts Heraklion",
+      "cat": "sights",
+      "lat": 35.3399,
+      "lng": 25.14628,
+      "tags": [
+        "museum"
+      ],
+      "near": true
+    },
+    {
+      "name": {
+        "en": "Koules Fortress",
+        "el": "Φρούριο Κούλες",
+        "de": "Festung Koules",
+        "fr": "Forteresse de Koules",
+        "it": "Fortezza di Koules"
+      },
+      "query": "Koules Fortress Heraklion",
+      "cat": "sights",
+      "lat": 35.34457,
+      "lng": 25.13693,
+      "tags": [
+        "fortress",
+        "landmark"
+      ]
+    },
+    {
+      "name": {
+        "en": "Heraklion Archaeological Museum",
+        "el": "Αρχαιολογικό Μουσείο Ηρακλείου",
+        "de": "Archäologisches Museum Heraklion",
+        "fr": "Musée archéologique d'Héraklion",
+        "it": "Museo Archeologico di Heraklion"
+      },
+      "query": "Heraklion Archaeological Museum",
+      "cat": "sights",
+      "lat": 35.33914,
+      "lng": 25.13742,
+      "tags": [
+        "museum",
+        "archaeology"
+      ]
+    },
+    {
+      "name": {
+        "en": "Lions Square · Morosini Fountain",
+        "el": "Λιοντάρια · Κρήνη Μοροζίνι",
+        "de": "Löwenplatz · Morosini-Brunnen",
+        "fr": "Place des Lions · Fontaine Morosini",
+        "it": "Piazza dei Leoni · Fontana Morosini"
+      },
+      "query": "Morosini Fountain Heraklion",
+      "cat": "sights",
+      "lat": 35.33916,
+      "lng": 25.13321,
+      "tags": [
+        "landmark"
+      ]
+    },
+    {
+      "name": {
+        "en": "Venetian Loggia",
+        "el": "Ενετική Λότζια",
+        "de": "Venezianische Loggia",
+        "fr": "Loggia vénitienne",
+        "it": "Loggia veneziana"
+      },
+      "query": "Venetian Loggia Heraklion",
+      "cat": "sights",
+      "lat": 35.33982,
+      "lng": 25.13418,
+      "tags": [
+        "landmark"
+      ]
+    },
+    {
+      "name": {
+        "en": "Central Market · 1866 Street",
+        "el": "Κεντρική Αγορά · Οδός 1866",
+        "de": "Zentralmarkt · Odos 1866",
+        "fr": "Marché central · rue 1866",
+        "it": "Mercato centrale · via 1866"
+      },
+      "query": "Heraklion Central Market 1866",
+      "cat": "sights",
+      "lat": 35.33794,
+      "lng": 25.13325,
+      "tags": [
+        "market"
+      ]
+    },
+    {
+      "name": {
+        "en": "Historical Museum of Crete",
+        "el": "Ιστορικό Μουσείο Κρήτης",
+        "de": "Historisches Museum Kretas",
+        "fr": "Musée historique de Crète",
+        "it": "Museo Storico di Creta"
+      },
+      "query": "Historical Museum of Crete",
+      "cat": "sights",
+      "lat": 35.34184,
+      "lng": 25.13094,
+      "tags": [
+        "museum"
+      ]
+    },
+    {
+      "name": {
+        "en": "Agios Minas Cathedral",
+        "el": "Μητρόπολη Αγίου Μηνά",
+        "de": "Kathedrale Agios Minas",
+        "fr": "Cathédrale Agios Minas",
+        "it": "Cattedrale di Agios Minas"
+      },
+      "query": "Agios Minas Cathedral Heraklion",
+      "cat": "sights",
+      "lat": 35.33761,
+      "lng": 25.13094,
+      "tags": [
+        "church"
+      ]
+    },
+    {
+      "name": {
+        "en": "Kazantzakis' Tomb · city walls",
+        "el": "Τάφος Καζαντζάκη · Ενετικά τείχη",
+        "de": "Kazantzakis-Grab · Stadtmauer",
+        "fr": "Tombe de Kazantzákis · remparts",
+        "it": "Tomba di Kazantzakis · mura"
+      },
+      "query": "Kazantzakis Tomb Heraklion",
+      "cat": "sights",
+      "lat": 35.33268,
+      "lng": 25.13076,
+      "tags": [
+        "landmark",
+        "view"
+      ]
+    },
+    {
+      "name": {
+        "en": "Natural History Museum of Crete",
+        "el": "Μουσείο Φυσικής Ιστορίας Κρήτης",
+        "de": "Naturhistorisches Museum Kretas",
+        "fr": "Musée d'histoire naturelle de Crète",
+        "it": "Museo di Storia Naturale di Creta"
+      },
+      "query": "Natural History Museum of Crete",
+      "cat": "sights",
+      "lat": 35.34191,
+      "lng": 25.12671,
+      "tags": [
+        "museum",
+        "family"
+      ]
+    },
+    {
+      "name": {
+        "en": "Palace of Knossos",
+        "el": "Ανάκτορο της Κνωσού",
+        "de": "Palast von Knossos",
+        "fr": "Palais de Cnossos",
+        "it": "Palazzo di Cnosso"
+      },
+      "query": "Knossos Palace",
+      "cat": "sights",
+      "lat": 35.29806,
+      "lng": 25.16281,
+      "tags": [
+        "archaeology"
+      ],
+      "far": true
+    },
+    {
+      "name": {
+        "en": "Ammoudara Beach",
+        "el": "Παραλία Αμμουδάρα",
+        "de": "Strand Ammoudara",
+        "fr": "Plage d'Ammoudara",
+        "it": "Spiaggia di Ammoudara"
+      },
+      "query": "Ammoudara Beach Heraklion",
+      "cat": "beach",
+      "lat": 35.33746,
+      "lng": 25.08933,
+      "tags": [
+        "beach"
+      ],
+      "far": true
+    },
+    {
+      "name": {
+        "en": "Central Bus Station (KTEL)",
+        "el": "Κεντρικός Σταθμός ΚΤΕΛ",
+        "de": "Zentraler Busbahnhof (KTEL)",
+        "fr": "Gare routière centrale (KTEL)",
+        "it": "Stazione centrale degli autobus (KTEL)"
+      },
+      "query": "Heraklion Central Bus Station KTEL",
+      "cat": "practical",
+      "lat": 35.3392,
+      "lng": 25.14132,
+      "tags": [
+        "bus"
+      ],
+      "near": true
+    },
+    {
+      "name": {
+        "en": "Heraklion Airport (HER)",
+        "el": "Αεροδρόμιο Ηρακλείου (HER)",
+        "de": "Flughafen Heraklion (HER)",
+        "fr": "Aéroport d'Héraklion (HER)",
+        "it": "Aeroporto di Heraklion (HER)"
+      },
+      "query": "Heraklion Airport",
+      "cat": "practical",
+      "lat": 35.33955,
+      "lng": 25.17606,
+      "tags": [
+        "airport"
+      ],
+      "far": true
+    }
+  ],
+  "arrivals": [
+    {
+      "id": "airport",
+      "mode": "car",
+      "lat": 35.33955,
+      "lng": 25.17606
+    },
+    {
+      "id": "port",
+      "mode": "foot",
+      "lat": 35.34421,
+      "lng": 25.14675
+    },
+    {
+      "id": "ktel",
+      "mode": "foot",
+      "lat": 35.3392,
+      "lng": 25.14132
+    },
+    {
+      "id": "centre",
+      "mode": "foot",
+      "lat": 35.33916,
+      "lng": 25.13321
+    }
+  ]
+}
