@@ -630,3 +630,15 @@ window.I18N = {
   };
   for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
 })();
+
+/* GPX / Strava and exact address */
+(() => {
+  const more = {
+    en: { "sport.gpx": "GPX for Strava", "sport.strava": "Strava route", "guide.homeNote": "Davaki 6, Heraklion", "guide.home": "Left & Right apartments · Davaki 6" },
+    el: { "sport.gpx": "GPX για Strava", "sport.strava": "Διαδρομή στο Strava", "guide.homeNote": "Δαβάκη 6, Ηράκλειο", "guide.home": "Διαμερίσματα Left & Right · Δαβάκη 6" },
+    de: { "sport.gpx": "GPX für Strava", "sport.strava": "Strava-Route", "guide.homeNote": "Davaki 6, Heraklion", "guide.home": "Left & Right Apartments · Davaki 6" },
+    fr: { "sport.gpx": "GPX pour Strava", "sport.strava": "Itinéraire Strava", "guide.homeNote": "Davaki 6, Héraklion", "guide.home": "Appartements Left & Right · Davaki 6" },
+    it: { "sport.gpx": "GPX per Strava", "sport.strava": "Percorso Strava", "guide.homeNote": "Davaki 6, Heraklion", "guide.home": "Appartamenti Left & Right · Davaki 6" }
+  };
+  for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
+})();

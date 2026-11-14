@@ -47,7 +47,9 @@ async function loop(mode, waypoints) {
 }
 for (const s of sport) {
   console.log('sport', s.id);
-  try { out.sport[s.id] = await loop(s.mode, s.waypoints); } catch (e) { console.warn(`  ${s.id} failed: ${e.message}`); }
+  for (let attempt = 0; attempt < 3 && !out.sport[s.id]; attempt++) {
+    try { out.sport[s.id] = await loop(s.mode, s.waypoints); } catch (e) { console.warn(`  ${s.id} attempt ${attempt + 1} failed: ${e.message}`); await sleep(2000); }
+  }
   await sleep(700);
 }
 

@@ -34,7 +34,11 @@ Add an entry to `data/places.json`:
 
 `cat` is one of `eat`, `coffee`, `drinks`, `sights`, `beach`, `practical`. `tags` are keys of the `t.*` texts in `i18n.js`. `fav` shows the "Hosts' pick" badge. Coordinates: right-click the spot in Google Maps and copy the two numbers.
 
-The apartment pin (`home`) uses the approximate location Airbnb shows publicly. Change it there if you want the exact spot.
+The apartment pin (`home`) is at Davaki 6. All distances and routes start from there.
+
+### Strava routes
+
+Each running and cycling route has a **GPX for Strava** button that downloads the route, so guests can import it into Strava, Garmin or Komoot. If you create the routes in your own Strava account (Strava → Routes → import the GPX → save as public), paste the route link into `data/places.json` as `"strava": "https://www.strava.com/routes/…"` on that route, and a **Strava route** button appears next to it.
 
 After adding places or moving the pin, recompute the routes and walking times:
 

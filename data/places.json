@@ -1,8 +1,8 @@
 {
   "home": {
-    "lat": 35.3383,
-    "lng": 25.1459,
-    "approximate": true
+    "lat": 35.33781,
+    "lng": 25.14683,
+    "address": "Davaki 6, Heraklion 713 07"
   },
   "places": [
     {
@@ -668,8 +668,8 @@
       "level": "easy",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.34457,
@@ -684,8 +684,8 @@
           25.13693
         ],
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ]
       ]
     },
@@ -695,8 +695,8 @@
       "level": "medium",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.34457,
@@ -711,8 +711,8 @@
           25.13693
         ],
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ]
       ]
     },
@@ -722,8 +722,8 @@
       "level": "medium",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33268,
@@ -742,8 +742,8 @@
           25.13693
         ],
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ]
       ]
     },
@@ -753,16 +753,16 @@
       "level": "easy",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33746,
           25.08933
         ],
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ]
       ]
     },
@@ -772,16 +772,16 @@
       "level": "medium",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33274,
           25.20273
         ],
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ]
       ]
     },
@@ -792,12 +792,30 @@
       "query": "Steel House Gym Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33823,
           25.14598
+        ]
+      ],
+      "fav": true
+    },
+    {
+      "id": "threetrees",
+      "mode": "gym",
+      "name": "Three Trees – Green Training Space",
+      "query": "Three Trees Green Training Space Heraklion",
+      "fav": true,
+      "waypoints": [
+        [
+          35.33781,
+          25.14683
+        ],
+        [
+          35.32998,
+          25.13646
         ]
       ]
     },
@@ -808,28 +826,12 @@
       "query": "GETFIT XXV Gym Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33402,
           25.14083
-        ]
-      ]
-    },
-    {
-      "id": "globalgym",
-      "mode": "gym",
-      "name": "Global Gym",
-      "query": "Global Gym Heraklion",
-      "waypoints": [
-        [
-          35.3383,
-          25.1459
-        ],
-        [
-          35.339,
-          25.14172
         ]
       ]
     },
@@ -840,8 +842,8 @@
       "query": "Ignyte Fitness Hall Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33187,
@@ -856,8 +858,8 @@
       "query": "Underground Gym Heraklion Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.34313,
@@ -872,8 +874,8 @@
       "query": "Fairy House Yoga & Aerial Arts Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33922,
@@ -888,8 +890,8 @@
       "query": "Local Shala Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33186,
@@ -904,8 +906,8 @@
       "query": "Irène Studio Pilates Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.32993,
@@ -920,8 +922,8 @@
       "query": "The CIRCLE Pilates & Fitness Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33602,
@@ -936,12 +938,29 @@
       "query": "Dharma Yoga Heraklion Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.34116,
           25.1343
+        ]
+      ]
+    },
+    {
+      "id": "balancewithin",
+      "mode": "wellness",
+      "name": "Balance Within – Massage Heraklion",
+      "query": "Balance Within Μασάζ Ηράκλειο",
+      "fav": true,
+      "waypoints": [
+        [
+          35.33781,
+          25.14683
+        ],
+        [
+          35.33921,
+          25.13061
         ]
       ]
     },
@@ -952,8 +971,8 @@
       "query": "Wellness Hall Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33631,
@@ -968,8 +987,8 @@
       "query": "Kame Massage Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33263,
@@ -984,8 +1003,8 @@
       "query": "My Massage Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33947,
@@ -1000,8 +1019,8 @@
       "query": "Arogya Spa Heraklion",
       "waypoints": [
         [
-          35.3383,
-          25.1459
+          35.33781,
+          25.14683
         ],
         [
           35.33945,

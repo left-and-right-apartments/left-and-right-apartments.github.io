@@ -775,23 +775,41 @@
   }
   function renderSport() {
     if (!guide || !guide.sport) return;
-    const list = guide.sport.filter((s) => sportMode === 'all' || s.mode === sportMode);
+    // within each kind, the places we recommend come first
+    const list = guide.sport.filter((s) => sportMode === 'all' || s.mode === sportMode)
+      .map((s, i) => ({ s, i })).sort((a, b) => (a.s.mode === b.s.mode ? (b.s.fav ? 1 : 0) - (a.s.fav ? 1 : 0) : 0) || a.i - b.i).map((x) => x.s);
     if (!list.some((s) => s.id === sportSel) && list[0]) sportSel = list[0].id;
     $('#sportList').innerHTML = list.map((s) => {
       const r = routes && routes.sport && routes.sport[s.id], spot = isSpot(s);
       const title = spot ? s.name : t(`sport.${s.id}`);
       const sub = spot ? esc(t(`sport.kind.${s.mode}`)) : `${esc(t(s.mode === 'ride' ? 'sport.ride' : 'sport.run'))} · <span class="lvl lvl-${s.level}">${esc(t('sport.' + s.level))}</span>`;
-      // the apartment pin is approximate, so very short walks just say "around the corner"
-      const dist = !r ? '' : spot ? (r.m < 300 ? `<span class="near-txt">${esc(t('sport.corner'))}</span>` : `${mins(r.m / 1000 * 12 * 60)}′<small>${esc(t('sport.onFoot'))}</small>`) : `${fmtKm(r.m)}<small>≈ ${sportMins(r)}′</small>`;
+      const dist = !r ? '' : spot ? (r.m < 250 ? `<span class="near-txt">${esc(t('sport.corner'))}</span>` : `${mins(r.m / 1000 * 12 * 60)}′<small>${esc(t('sport.onFoot'))}</small>`) : `${fmtKm(r.m)}<small>≈ ${sportMins(r)}′</small>`;
       const desc = spot ? t('sport.spotDesc', { d: r ? fmtKm(r.m) : '' }) : t(`sport.${s.id}.desc`);
+      const links = [`<a class="link-arrow" target="_blank" rel="noopener" href="${sportDirUrl(s)}">${esc(t('guide.open'))}</a>`];
+      if (!spot && s.strava) links.push(`<a class="chip-link strava" target="_blank" rel="noopener" href="${esc(s.strava)}">${svg('M10 3 4 15h4l2-4 2 4h4zM15 15l-2 4-2-4')}<span>${esc(t('sport.strava'))}</span></a>`);
+      if (!spot && r) links.push(`<a class="chip-link" href="#" data-gpx="${s.id}">${svg('M12 4v11M7 10l5 5 5-5M5 20h14')}<span>${esc(t('sport.gpx'))}</span></a>`);
       return `<button class="sport-card${s.id === sportSel ? ' is-on' : ''}" role="tab" aria-selected="${s.id === sportSel}" data-id="${s.id}" data-mode="${s.mode}">
         <span class="ic">${svg(SPORT_ICONS[s.mode])}</span>
-        <span class="sc-main"><b>${esc(title)}</b><small>${sub}</small></span>
+        <span class="sc-main"><b>${esc(title)}${s.fav ? `<span class="badge">${esc(t('guide.fav'))}</span>` : ''}</b><small>${sub}</small></span>
         <span class="sc-dist">${dist}</span>
-        <span class="sc-more"><span>${esc(desc)}</span><a class="link-arrow" target="_blank" rel="noopener" href="${sportDirUrl(s)}">${esc(t('guide.open'))}</a></span>
+        <span class="sc-more"><span>${esc(desc)}</span><span class="sc-links">${links.join('')}</span></span>
       </button>`;
     }).join('');
     showSport(false);
+  }
+  /** Builds a GPX file of the route in the browser, ready to import into Strava, Garmin, Komoot… */
+  function downloadGpx(id) {
+    const s = sportDef(id), r = routes && routes.sport && routes.sport[id];
+    if (!s || !r) return;
+    const name = `Left & Right – ${t(`sport.${id}`)}`;
+    const xml = (v) => String(v).replace(/[<>&"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+    const pts = decodePolyline(r.line).map(([la, ln]) => `<trkpt lat="${la.toFixed(6)}" lon="${ln.toFixed(6)}"/>`).join('');
+    const gpx = `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Left &amp; Right cosy apartments" xmlns="http://www.topografix.com/GPX/1/1"><metadata><name>${xml(name)}</name></metadata><trk><name>${xml(name)}</name><type>${s.mode === 'ride' ? 'cycling' : 'running'}</type><trkseg>${pts}</trkseg></trk></gpx>`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([gpx], { type: 'application/gpx+xml' }));
+    a.download = `left-right-${id}.gpx`;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   function kmMarkers(pts, step) {
     const out = []; let acc = 0, next = step;
@@ -835,6 +853,8 @@
   }
   function initSport() {
     $('#sportList').addEventListener('click', (e) => {
+      const gpx = e.target.closest('[data-gpx]');
+      if (gpx) { e.preventDefault(); downloadGpx(gpx.dataset.gpx); return; }
       if (e.target.closest('a')) return;
       const b = e.target.closest('.sport-card'); if (!b || b.dataset.id === sportSel) return;
       sportSel = b.dataset.id;
