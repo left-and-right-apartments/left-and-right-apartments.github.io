@@ -159,6 +159,150 @@
     });
   }
 
+  /* ---------- floor plan ---------- */
+  // Schematic layouts worked out from the photos, drawn the way you walk through the home:
+  // the front door is at the bottom, and left/right are as you see them coming in.
+  // Each room: position in the drawing, label position (lx, ly), its photos, and a furniture sketch (f).
+  const SEATS = '<circle cx="160" cy="596" r="9"/><rect x="128" y="590" width="16" height="12" rx="3"/><rect x="176" y="590" width="16" height="12" rx="3"/>';
+  const BED = '<rect x="110" y="22" width="100" height="100" rx="6"/><rect x="118" y="30" width="38" height="20" rx="5"/><rect x="164" y="30" width="38" height="20" rx="5"/>';
+  const PLAN = {
+    left: { rooms: [
+      { id: 'bedroom', x: 10, y: 10, w: 300, h: 150, ly: 146, photos: [12, 13, 14], f: BED + '<rect x="18" y="60" width="9" height="90" rx="2"/>' },
+      { id: 'bath', x: 10, y: 164, w: 186, h: 96, ly: 246, photos: [16, 17, 18, 19], f: '<rect x="18" y="172" width="46" height="40" rx="3"/><path d="M18 212 64 172"/><circle cx="104" cy="186" r="9"/><rect x="150" y="172" width="22" height="32" rx="6"/>' },
+      { id: 'hall', x: 200, y: 164, w: 110, h: 96, ly: 246, lx: 248, photos: [15], f: '<rect x="295" y="172" width="9" height="80" rx="2"/>' },
+      { id: 'kitchen', x: 10, y: 264, w: 300, h: 130, lx: 255, ly: 334, photos: [5, 6, 7, 8, 11, 9, 10], f: '<path d="M20 274h132v14H34v54h118v14H20z"/><circle cx="62" cy="368" r="4.5"/><circle cx="86" cy="368" r="4.5"/><circle cx="110" cy="368" r="4.5"/><circle cx="134" cy="368" r="4.5"/>' },
+      { id: 'living', x: 10, y: 398, w: 300, h: 170, lx: 190, ly: 500, photos: [2, 3, 4, 21, 1], f: '<path d="M20 412h32v110h70v32H20z"/><rect x="78" y="450" width="36" height="48" rx="4"/><rect x="298" y="440" width="7" height="84" rx="2"/><rect x="266" y="406" width="26" height="26" rx="8"/>' },
+      { id: 'patio', x: 60, y: 572, w: 200, h: 58, ly: 624, out: true, photos: [20], f: SEATS },
+    ] },
+    right: { rooms: [
+      { id: 'bedroom', x: 10, y: 10, w: 196, h: 150, ly: 146, photos: [9, 10, 11, 12, 13], f: '<rect x="60" y="22" width="96" height="100" rx="6"/><rect x="68" y="30" width="36" height="20" rx="5"/><rect x="112" y="30" width="36" height="20" rx="5"/><rect x="18" y="60" width="9" height="90" rx="2"/>' },
+      { id: 'yard', x: 210, y: 10, w: 100, h: 250, ly: 246, out: true, photos: [24], f: '<circle cx="260" cy="110" r="10"/><rect x="252" y="78" width="16" height="12" rx="3"/><rect x="252" y="130" width="16" height="12" rx="3"/>' },
+      { id: 'hall', x: 10, y: 164, w: 80, h: 96, ly: 246, photos: [8], f: '<rect x="16" y="172" width="8" height="60" rx="2"/>' },
+      { id: 'bath', x: 94, y: 164, w: 112, h: 96, ly: 246, photos: [14, 15], f: '<rect x="102" y="172" width="40" height="40" rx="3"/><path d="M102 212 142 172"/><circle cx="166" cy="186" r="9"/><rect x="178" y="210" width="20" height="30" rx="6"/>' },
+      { id: 'living', x: 10, y: 264, w: 300, h: 170, lx: 110, ly: 418, photos: [1, 5, 7, 6], f: '<path d="M300 424H186v-32h82v-82h32z"/><rect x="204" y="328" width="44" height="42" rx="4"/><circle cx="170" cy="340" r="10"/><circle cx="178" cy="368" r="10"/><rect x="15" y="306" width="7" height="84" rx="2"/><rect x="128" y="272" width="28" height="28" rx="9"/>' },
+      { id: 'kitchen', x: 10, y: 438, w: 300, h: 130, ly: 524, photos: [4, 2, 3, 19], f: '<rect x="16" y="472" width="22" height="90" rx="3"/><rect x="282" y="470" width="22" height="92" rx="3"/><rect x="212" y="446" width="92" height="22" rx="3"/><circle cx="226" cy="482" r="6"/><circle cx="252" cy="482" r="6"/>' },
+      { id: 'patio', x: 60, y: 572, w: 200, h: 58, ly: 624, out: true, photos: [16], f: SEATS },
+    ] },
+  };
+  let planApt = 'left', planRoom = 'living', planDim = '3d', tourTimer = null, tourStep = -1;
+  const TOUR_MS = 2400;
+  const planRooms = () => PLAN[planApt].rooms;
+  const tourOrder = () => [...planRooms()].sort((r1, r2) => (r2.y + r2.h) - (r1.y + r1.h) || r1.x - r2.x); // from the front door inwards
+  /** Draws the rooms once per apartment/language. Each room is its own element so it can rise in 3D. */
+  function renderPlan() {
+    $('#floorplan').dataset.apt = planApt;
+    $('#planSvg').innerHTML = `<div class="plan-stage" role="group" aria-label="${esc(t('plan.kicker'))}">${planRooms().map((r) => {
+      const name = t('plan.' + r.id);
+      const layers = [0, 1, 2, 3, 4].map((z) => `<svg class="fl${z === 4 ? ' top' : ''}" style="--z:${z}" viewBox="${r.x} ${r.y} ${r.w} ${r.h}" aria-hidden="true"><g class="pr-f">${r.f}</g></svg>`).join('');
+      return `<button type="button" class="plan-room${r.out ? ' out' : ''}" data-room="${r.id}" aria-label="${esc(name)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px">
+        <i class="w wt"></i><i class="w wl"></i>${layers}<i class="w wb"></i><i class="w wr"></i>
+        <span class="plan-label" style="left:${(r.lx || r.x + r.w / 2) - r.x}px;top:${r.ly - r.y - 4}px">${esc(name)}</span>
+      </button>`;
+    }).join('')}</div>`;
+    fitPlan();
+    showRoom();
+  }
+  function fitPlan() {
+    const view = $('#planSvg'), stage = $('.plan-stage', view);
+    if (!stage || !view.clientHeight) return;
+    stage.style.setProperty('--k', Math.min(view.clientHeight / 640, view.clientWidth / 330).toFixed(3));
+    // tilted, the model is wider than it is tall, so it needs its own scale to fit
+    stage.style.setProperty('--k3', Math.min(view.clientHeight / 470, view.clientWidth / 600).toFixed(3));
+  }
+  /** Highlights the chosen room, moves the "camera" towards it and fills the side panel. */
+  function showRoom() {
+    const rooms = planRooms(), room = rooms.find((r) => r.id === planRoom) || rooms[0];
+    const stage = $('.plan-stage');
+    $('#floorplan').classList.toggle('is-3d', planDim === '3d');
+    $$('.plan-room').forEach((n) => { const on = n.dataset.room === room.id; n.classList.toggle('is-on', on); n.setAttribute('aria-pressed', on); });
+    if (stage) {
+      const touring = tourStep >= 0;
+      stage.style.setProperty('--tx', `${touring ? (160 - (room.x + room.w / 2)) * 0.55 : 0}px`);
+      stage.style.setProperty('--ty', `${touring ? (320 - (room.y + room.h / 2)) * 0.55 : 0}px`);
+      stage.style.setProperty('--zoom', touring ? 1.12 : 1);
+      stage.style.setProperty('--rz', `${touring ? (tourStep % 2 ? -20 : -34) : -28}deg`);
+    }
+    $('#planPanel').innerHTML = `<p class="kicker">${planApt === 'left' ? 'Left' : 'Right'}</p><h3>${esc(t('plan.' + room.id))}</h3><p>${esc(t(`plan.${room.id}.d`))}</p>
+      <div class="plan-photos">${room.photos.map((i) => `<button data-photo="${i}" aria-label="Photo ${i}"><img src="${photo(planApt, i, true)}" alt="" loading="lazy"></button>`).join('')}</div>`;
+  }
+  function tourStop() {
+    clearTimeout(tourTimer); tourTimer = null; tourStep = -1;
+    const b = $('#planTour'); if (!b) return;
+    b.classList.remove('is-playing'); $('span', b).textContent = t('plan.tour');
+    $('#planProg').innerHTML = '';
+    showRoom();
+  }
+  function tourPlay() {
+    const order = tourOrder();
+    const next = () => {
+      tourStep += 1;
+      if (tourStep >= order.length) { planRoom = 'living'; return tourStop(); }
+      planRoom = order[tourStep].id;
+      $$('#planProg i').forEach((n, k) => { n.className = k < tourStep ? 'done' : k === tourStep ? 'now' : ''; });
+      showRoom();
+      tourTimer = setTimeout(next, TOUR_MS);
+    };
+    tourStep = -1;
+    $('#planTour').classList.add('is-playing'); $('#planTour span').textContent = t('plan.pause');
+    $('#planProg').innerHTML = order.map(() => '<i></i>').join('');
+    $('#planProg').style.setProperty('--ms', `${TOUR_MS}ms`);
+    next();
+  }
+  function initPlan() {
+    $('#planSvg').insertAdjacentHTML('beforebegin', `<div class="plan-ctrl">
+      <button type="button" class="btn btn-ink btn-sm" id="planTour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-play" d="M8 5v14l11-7z"/><path class="ic-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span data-i18n="plan.tour">Play tour</span></button>
+      <div class="seg seg-sm" id="planDimSeg"><button type="button" class="is-on" data-dim="3d">3D</button><button type="button" data-dim="2d">2D</button></div>
+    </div>`);
+    $('#planSvg').insertAdjacentHTML('afterend', '<div class="plan-progress" id="planProg"></div>');
+    const pick = (g) => { if (!g) return; if (tourTimer) tourStop(); planRoom = g.dataset.room; showRoom(); };
+    $('#planSvg').addEventListener('click', (e) => pick(e.target.closest('.plan-room')));
+    $('#planTour').addEventListener('click', () => (tourTimer ? tourStop() : tourPlay()));
+    $('#planDimSeg').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      planDim = b.dataset.dim;
+      $$('#planDimSeg button').forEach((x) => x.classList.toggle('is-on', x === b));
+      showRoom();
+    });
+    addEventListener('resize', fitPlan);
+    const setApt = (apt) => {
+      if (tourTimer) tourStop();
+      planApt = apt;
+      if (!PLAN[apt].rooms.some((r) => r.id === planRoom)) planRoom = 'living';
+      $$('#planSeg button').forEach((x) => x.classList.toggle('is-on', x.dataset.apt === apt));
+      renderPlan();
+    };
+    $('#planSeg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setApt(b.dataset.apt); });
+    $('#planPanel').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-photo]'); if (!b) return;
+      if (tourTimer) tourStop();
+      lb.apt = planApt; lb.i = +b.dataset.photo; showLb();
+      $('#lightbox').hidden = false; document.body.style.overflow = 'hidden'; $('#lbClose').focus();
+    });
+    // "Floor plan" button in each apartment card opens the popup
+    const modal = $('#floorplan');
+    let opener = null;
+    const close = () => {
+      if (modal.hidden) return;
+      tourStop();
+      modal.classList.remove('is-open'); setTimeout(() => { modal.hidden = true; }, 250);
+      document.body.classList.remove('no-scroll'); if (opener) opener.focus();
+    };
+    $$('.apt').forEach((sec) => {
+      const b = el('button', { class: 'btn btn-ghost plan-link', type: 'button' }, `${svg('M3 4h18v16H3zM3 12h7M10 4v5M10 15v5M15 20v-8h6')}<span data-i18n="plan.open">Floor plan</span>`);
+      b.addEventListener('click', () => {
+        opener = b; planRoom = 'living'; setApt(sec.dataset.apt);
+        modal.hidden = false; document.body.classList.add('no-scroll');
+        void modal.offsetWidth; modal.classList.add('is-open'); fitPlan(); // reflow so the fade-in runs
+        $('#planClose').focus();
+      });
+      $('.apt-specs', sec).after($('.apt-rating', sec)); // rating sits with the specs, so the two buttons stay together
+      $('.apt-cta', sec).append(b);
+    });
+    $('#planClose').addEventListener('click', close);
+    modal.addEventListener('click', (e) => e.target === modal && close());
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden && $('#lightbox').hidden) close(); });
+  }
+
   /* ---------- amenities ---------- */
   function renderAmenities() {
     $('#amenGrid').innerHTML = AMENITIES.map(([key, d]) => `<li>${svg(d)}<span>${esc(t('amen.' + key))}</span></li>`).join('');
@@ -892,9 +1036,9 @@
 
   /* ---------- boot ---------- */
   async function boot() {
-    initHeader(); initGalleries(); initStats(); initVoices(); initCalendar(); initBooking(); initReveal();
+    initHeader(); initGalleries(); initStats(); initVoices(); initCalendar(); initBooking(); initPlan(); initReveal();
     const retryArrive = initArrivals(), retryGuide = initGuide(), retrySport = initSport();
-    rerender.push(renderAmenities, renderStats, renderVoices, renderCalendar, renderArrivals, renderGuide, renderFacts, bookingCheck, renderSport);
+    rerender.push(renderAmenities, renderStats, renderVoices, renderCalendar, renderArrivals, renderGuide, renderFacts, bookingCheck, renderSport, renderPlan);
     setLang(pickLang(), false);
     let rev;
     [stats, avail, guide, routes, rev] = await Promise.all(['stats', 'availability', 'places', 'routes', 'reviews'].map((f) => getJSON(`data/${f}.json`)));

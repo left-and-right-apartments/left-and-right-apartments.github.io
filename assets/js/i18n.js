@@ -642,3 +642,83 @@ window.I18N = {
   };
   for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
 })();
+
+/* Floor plan */
+(() => {
+  const more = {
+    en: {
+      "plan.kicker": "Floor plan", "plan.title": "Take a look around.", "plan.sub": "Tap a room to see what's in it and how it looks.", "plan.note": "Schematic layout, not to scale.", "plan.open": "Floor plan",
+      "plan.patio": "Front patio", "plan.living": "Living room", "plan.kitchen": "Kitchen", "plan.bath": "Bathroom", "plan.hall": "Hallway", "plan.bedroom": "Bedroom", "plan.yard": "Private yard",
+      "plan.patio.d": "A small outdoor spot by the front door, with a table and chairs for your morning coffee.",
+      "plan.living.d": "Sofa that opens into a full double bed, 49″ smart TV and air conditioning.",
+      "plan.kitchen.d": "Fully equipped: oven, microwave, fridge, coffee machine and toaster, with a table and stools for four.",
+      "plan.bath.d": "Spacious bathroom with walk-in shower, hairdryer, towels and toiletries.",
+      "plan.hall.d": "Connects the living area with the bedroom and bathroom, with built-in wardrobes.",
+      "plan.bedroom.d": "Double bed 160×200 with anatomic mattress, large closets, TV and air conditioning.",
+      "plan.yard.d": "A private fenced yard with outdoor seating, just for you."
+    },
+    el: {
+      "plan.kicker": "Κάτοψη", "plan.title": "Ρίξτε μια ματιά στο σπίτι.", "plan.sub": "Πατήστε ένα δωμάτιο για να δείτε τι έχει και πώς είναι.", "plan.note": "Σχηματική κάτοψη, όχι υπό κλίμακα.", "plan.open": "Κάτοψη",
+      "plan.patio": "Αυλή εισόδου", "plan.living": "Σαλόνι", "plan.kitchen": "Κουζίνα", "plan.bath": "Μπάνιο", "plan.hall": "Διάδρομος", "plan.bedroom": "Υπνοδωμάτιο", "plan.yard": "Ιδιωτική αυλή",
+      "plan.patio.d": "Μικρός εξωτερικός χώρος μπροστά στην είσοδο, με τραπεζάκι και καρέκλες για τον πρωινό καφέ.",
+      "plan.living.d": "Καναπές που ανοίγει σε κανονικό διπλό κρεβάτι, smart TV 49″ και κλιματισμός.",
+      "plan.kitchen.d": "Πλήρως εξοπλισμένη: φούρνος, μικροκύματα, ψυγείο, καφετιέρα και τοστιέρα, με τραπέζι και σκαμπό για τέσσερις.",
+      "plan.bath.d": "Ευρύχωρο μπάνιο με ντουζιέρα walk-in, πιστολάκι, πετσέτες και είδη περιποίησης.",
+      "plan.hall.d": "Συνδέει το καθιστικό με το υπνοδωμάτιο και το μπάνιο, με εντοιχισμένες ντουλάπες.",
+      "plan.bedroom.d": "Διπλό κρεβάτι 160×200 με ανατομικό στρώμα, μεγάλες ντουλάπες, τηλεόραση και κλιματισμός.",
+      "plan.yard.d": "Ιδιωτική περιφραγμένη αυλή με καθιστικό, μόνο για εσάς."
+    },
+    de: {
+      "plan.kicker": "Grundriss", "plan.title": "Schauen Sie sich um.", "plan.sub": "Tippen Sie auf einen Raum, um zu sehen, was er bietet und wie er aussieht.", "plan.note": "Schematischer Grundriss, nicht maßstabsgetreu.", "plan.open": "Grundriss",
+      "plan.patio": "Terrasse", "plan.living": "Wohnzimmer", "plan.kitchen": "Küche", "plan.bath": "Bad", "plan.hall": "Flur", "plan.bedroom": "Schlafzimmer", "plan.yard": "Privater Hof",
+      "plan.patio.d": "Ein kleiner Außenbereich vor der Eingangstür, mit Tisch und Stühlen für den Morgenkaffee.",
+      "plan.living.d": "Sofa, das sich zum vollwertigen Doppelbett ausklappen lässt, 49″ Smart-TV und Klimaanlage.",
+      "plan.kitchen.d": "Voll ausgestattet: Backofen, Mikrowelle, Kühlschrank, Kaffeemaschine und Toaster, mit Tisch und Hockern für vier.",
+      "plan.bath.d": "Geräumiges Bad mit begehbarer Dusche, Föhn, Handtüchern und Pflegeprodukten.",
+      "plan.hall.d": "Verbindet den Wohnbereich mit Schlafzimmer und Bad, mit Einbauschränken.",
+      "plan.bedroom.d": "Doppelbett 160×200 mit orthopädischer Matratze, große Schränke, TV und Klimaanlage.",
+      "plan.yard.d": "Ein privater, umzäunter Hof mit Sitzgelegenheit, nur für Sie."
+    },
+    fr: {
+      "plan.kicker": "Plan", "plan.title": "Faites le tour du propriétaire.", "plan.sub": "Touchez une pièce pour voir ce qu'elle contient et à quoi elle ressemble.", "plan.note": "Plan schématique, pas à l'échelle.", "plan.open": "Plan",
+      "plan.patio": "Patio d'entrée", "plan.living": "Salon", "plan.kitchen": "Cuisine", "plan.bath": "Salle de bain", "plan.hall": "Couloir", "plan.bedroom": "Chambre", "plan.yard": "Cour privée",
+      "plan.patio.d": "Un petit espace extérieur devant la porte d'entrée, avec table et chaises pour le café du matin.",
+      "plan.living.d": "Canapé convertible en vrai lit double, Smart TV 49″ et climatisation.",
+      "plan.kitchen.d": "Entièrement équipée : four, micro-ondes, réfrigérateur, cafetière et grille-pain, avec table et tabourets pour quatre.",
+      "plan.bath.d": "Salle de bain spacieuse avec douche à l'italienne, sèche-cheveux, serviettes et produits de toilette.",
+      "plan.hall.d": "Relie le séjour à la chambre et à la salle de bain, avec placards intégrés.",
+      "plan.bedroom.d": "Lit double 160×200 avec matelas ergonomique, grands placards, TV et climatisation.",
+      "plan.yard.d": "Une cour privée clôturée avec salon extérieur, rien que pour vous."
+    },
+    it: {
+      "plan.kicker": "Planimetria", "plan.title": "Date un'occhiata in giro.", "plan.sub": "Toccate una stanza per vedere cosa offre e com'è.", "plan.note": "Planimetria schematica, non in scala.", "plan.open": "Planimetria",
+      "plan.patio": "Patio d'ingresso", "plan.living": "Soggiorno", "plan.kitchen": "Cucina", "plan.bath": "Bagno", "plan.hall": "Corridoio", "plan.bedroom": "Camera", "plan.yard": "Cortile privato",
+      "plan.patio.d": "Un piccolo spazio esterno davanti all'ingresso, con tavolino e sedie per il caffè del mattino.",
+      "plan.living.d": "Divano che si apre in un vero letto matrimoniale, Smart TV 49″ e aria condizionata.",
+      "plan.kitchen.d": "Completamente attrezzata: forno, microonde, frigorifero, macchina del caffè e tostapane, con tavolo e sgabelli per quattro.",
+      "plan.bath.d": "Bagno spazioso con doccia walk-in, asciugacapelli, asciugamani e prodotti da bagno.",
+      "plan.hall.d": "Collega la zona giorno con la camera e il bagno, con armadi a muro.",
+      "plan.bedroom.d": "Letto matrimoniale 160×200 con materasso anatomico, grandi armadi, TV e aria condizionata.",
+      "plan.yard.d": "Un cortile privato recintato con salottino esterno, tutto per voi."
+    }
+  };
+  for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
+})();
+
+/* Floor plan tour */
+(() => {
+  const more = {
+    en: { "plan.tour": "Play tour", "plan.pause": "Pause" },
+    el: { "plan.tour": "Περιήγηση", "plan.pause": "Παύση" },
+    de: { "plan.tour": "Rundgang starten", "plan.pause": "Pause" },
+    fr: { "plan.tour": "Lancer la visite", "plan.pause": "Pause" },
+    it: { "plan.tour": "Avvia il tour", "plan.pause": "Pausa" }
+  };
+  for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
+})();
+
+/* Menu entry for the Active & wellbeing section */
+(() => {
+  const more = { en: "Active", el: "Άθληση", de: "Aktiv", fr: "Sport", it: "Sport" };
+  for (const l of Object.keys(more)) window.I18N[l]["nav.sport"] = more[l];
+})();
