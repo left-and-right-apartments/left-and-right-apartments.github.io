@@ -722,3 +722,30 @@ window.I18N = {
   const more = { en: "Active", el: "Άθληση", de: "Aktiv", fr: "Sport", it: "Sport" };
   for (const l of Object.keys(more)) window.I18N[l]["nav.sport"] = more[l];
 })();
+
+/* Search-engine titles and descriptions (what Google shows in its results), one per language */
+(() => {
+  const more = {
+    en: {
+      "meta.title": "Left & Right cosy apartments · Apartments in Heraklion, Crete",
+      "meta.desc": "Two cosy, Superhost-rated apartments (4.99★, 500+ reviews) in a quiet neighbourhood of Heraklion, Crete — minutes from the port, the bus station and the old town. Book direct or on Airbnb."
+    },
+    el: {
+      "meta.title": "Left & Right cosy apartments · Διαμερίσματα στο Ηράκλειο Κρήτης",
+      "meta.desc": "Δύο κομψά διαμερίσματα Superhost (4.99★, 500+ κριτικές) σε ήσυχη γειτονιά του Ηρακλείου, λίγα λεπτά από το λιμάνι, το ΚΤΕΛ και την παλιά πόλη. Κράτηση απευθείας ή στο Airbnb."
+    },
+    de: {
+      "meta.title": "Left & Right cosy apartments · Ferienwohnungen in Heraklion, Kreta",
+      "meta.desc": "Zwei gemütliche Ferienwohnungen vom Superhost (4,99★, über 500 Bewertungen) in ruhiger Lage in Heraklion, Kreta – nur Minuten vom Hafen, Busbahnhof und der Altstadt. Direkt oder über Airbnb buchen."
+    },
+    fr: {
+      "meta.title": "Left & Right cosy apartments · Appartements à Héraklion, Crète",
+      "meta.desc": "Deux appartements cosy, Superhôte (4,99★, plus de 500 avis), dans un quartier calme d'Héraklion en Crète, à quelques minutes du port, de la gare routière et de la vieille ville. Réservez en direct ou sur Airbnb."
+    },
+    it: {
+      "meta.title": "Left & Right cosy apartments · Appartamenti a Heraklion, Creta",
+      "meta.desc": "Due appartamenti accoglienti, Superhost (4,99★, oltre 500 recensioni), in un quartiere tranquillo di Heraklion, Creta, a pochi minuti dal porto, dalla stazione degli autobus e dal centro storico. Prenota direttamente o su Airbnb."
+    }
+  };
+  for (const l of Object.keys(more)) Object.assign(window.I18N[l], more[l]);
+})();

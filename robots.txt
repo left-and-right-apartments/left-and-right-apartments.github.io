@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://left-and-right-apartments.github.io/sitemap.xml

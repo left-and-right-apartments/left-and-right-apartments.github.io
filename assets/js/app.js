@@ -77,6 +77,13 @@
     if (save) { try { localStorage.setItem('lang', lang); } catch {} }
     document.documentElement.lang = lang;
     document.title = t('meta.title');
+    // each language has its own address (?lang=xx) so search engines can index every version
+    const url = `https://left-and-right-apartments.github.io/${lang === 'en' ? '' : `?lang=${lang}`}`;
+    $('link[rel="canonical"]').href = url;
+    $('meta[property="og:url"]').content = url;
+    $('meta[property="og:title"]').content = t('meta.title');
+    $('meta[property="og:description"]').content = t('meta.desc');
+    $('meta[property="og:locale"]').content = { en: 'en_GB', el: 'el_GR', de: 'de_DE', fr: 'fr_FR', it: 'it_IT' }[lang];
     $('meta[name="description"]').setAttribute('content', t('meta.desc'));
     $$('[data-i18n]').forEach((n) => { n.textContent = t(n.dataset.i18n); });
     $$('[data-i18n-html]').forEach((n) => { n.innerHTML = t(n.dataset.i18nHtml); }); // our own static strings only
