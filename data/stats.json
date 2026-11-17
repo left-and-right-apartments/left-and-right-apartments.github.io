@@ -1,17 +1,53 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-17",
   "left": {
     "rating": 4.99,
     "reviews": 317,
     "fiveStarPct": 99,
-    "categories": { "cleanliness": 5.0, "accuracy": 5.0, "checkin": 5.0, "communication": 5.0, "location": 4.8, "value": 5.0 },
-    "mentions": { "hospitality": 260, "location": 136, "cleanliness": 129, "decor": 98, "indoor": 89, "getting_around": 87, "walkability": 80, "amenities": 68, "nearby": 55, "parking": 23 }
+    "categories": {
+      "cleanliness": 5,
+      "accuracy": 5,
+      "checkin": 5,
+      "communication": 5,
+      "location": 4.8,
+      "value": 5
+    },
+    "mentions": {
+      "hospitality": 260,
+      "location": 136,
+      "cleanliness": 129,
+      "decor": 98,
+      "indoor": 89,
+      "getting_around": 87,
+      "walkability": 80,
+      "amenities": 68,
+      "nearby": 55,
+      "parking": 23
+    }
   },
   "right": {
     "rating": 4.99,
-    "reviews": 204,
+    "reviews": 205,
     "fiveStarPct": 99,
-    "categories": { "cleanliness": 5.0, "accuracy": 5.0, "checkin": 5.0, "communication": 5.0, "location": 4.8, "value": 4.9 },
-    "mentions": { "hospitality": 164, "cleanliness": 105, "decor": 68, "location": 68, "indoor": 66, "amenities": 54, "walkability": 47, "nearby": 38, "accuracy": 15, "parking": 14 }
+    "categories": {
+      "cleanliness": 5,
+      "accuracy": 5,
+      "checkin": 5,
+      "communication": 5,
+      "location": 4.8,
+      "value": 4.9
+    },
+    "mentions": {
+      "hospitality": 164,
+      "cleanliness": 105,
+      "decor": 68,
+      "location": 68,
+      "indoor": 66,
+      "amenities": 54,
+      "walkability": 47,
+      "nearby": 38,
+      "accuracy": 15,
+      "parking": 14
+    }
   }
 }
